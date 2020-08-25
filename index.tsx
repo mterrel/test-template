@@ -3,7 +3,11 @@ import Adapt, { Group, handle } from "@adpt/core";
 import { UrlRouter } from "@adpt/cloud/http";
 import { NodeService, ReactApp } from "@adpt/cloud/nodejs";
 import { Postgres } from "@adpt/cloud/postgres";
+import path from "path";
 import { k8sTestStyle } from "./styles";
+
+const targetDir = process.env.TARGET_DIR;
+if (!targetDir) throw new Error(`TARGET_DIR must be defined`);
 
 function App() {
     const pg = handle();
@@ -19,9 +23,9 @@ function App() {
                 { path: "/", endpoint: app }
             ]} />
 
-        <ReactApp handle={app} srcDir="../frontend" />
+        <ReactApp handle={app} srcDir={path.join(targetDir, "frontend")} />
 
-        <NodeService handle={api} srcDir="../backend" connectTo={pg} />
+        <NodeService handle={api} srcDir={path.join(targetDir, "backend")} connectTo={pg} />
 
         <Postgres handle={pg} />
 
