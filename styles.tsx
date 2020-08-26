@@ -1,9 +1,9 @@
 import Adapt, { Style } from "@adpt/core";
-import { Service } from "@adpt/cloud";
+import { NodeService } from "@adpt/cloud/nodejs";
 
 export const aioCloud = (
     <Style>
-        {Service}
+        {NodeService}
         {Adapt.rule(({ handle, ...props }) => null)}
     </Style>
 );
