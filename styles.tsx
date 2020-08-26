@@ -4,7 +4,7 @@ import { Service } from "@adpt/cloud";
 export const aioCloud = (
     <Style>
         {Service}
-        {Adapt.rule<ServiceProps>(({ handle, ...props }) => null}
+        {Adapt.rule(({ handle, ...props }) => null)}
     </Style>
 );
 
